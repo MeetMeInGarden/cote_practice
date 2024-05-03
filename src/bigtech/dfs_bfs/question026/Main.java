@@ -95,7 +95,9 @@ public class Main {
 		bw.newLine();
 		bw.write(bfsResult.toString());
 
-		bw.flush(); // 남아있는 데이터를 모두 출력시킴
+		// 남아있는 데이터를 모두 출력시킴
+		// flush 메소드를 호출해야 BufferedWriter에 들어있는 데이터를 출력할 수 있다.
+		bw.flush();
 		bw.close();
 	}
 
@@ -106,11 +108,13 @@ public class Main {
 
 		// 방문처리
 		visited_dfs[node] = true;
+		// 탐색 순서 기록
 		dfs_search.add(node);
-
+		// 꺼낸 노드의 인접 노드
 		ArrayList<Integer> tmpList = list[node];
 
 		for(int tmpNum : tmpList) {
+			// 인접 노드 중 방문하지 않은 노드에 대해서 계속 탐색 시작
 			if(!visited_dfs[tmpNum]) {
 				dfs(tmpNum);
 			}
@@ -124,16 +128,20 @@ public class Main {
 
 		// 방문처리
 		visited_bfs[node] = true;
+		// 탐색 순서 기록
 		bfs_search.add(node);
-
+		// 꺼낸 노드의 인접 노드
 		ArrayList<Integer> tmpList = list[node];
 
 		for(int tmpNum : tmpList) {
+			// 꺼낸 노드의 인접 노드를 전부 queue 에 넣는다.
+			// 단, 그 전에 방문배열(visited_bfs)을 먼저 체크해 이미 방문한 노드는 queue에 넣지 않는다.
 			if(!visited_bfs[tmpNum]) {
 				queue.offer(tmpNum);
 			}
 		}
 		while(!queue.isEmpty()) {
+			// queue 에 있는 데이터를 하나씩 꺼내면서 계속 탐색
 			bfs(queue.remove());
 		}
 	}
