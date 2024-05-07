@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.LinkedList;
 
-// 문제027. 미로 탐색하기(2178)
+// 문제027. 미로 탐색하기(2178) - 시도3
 public class Main3 {
 	// 그래프
 	static ArrayList<Integer>[][] graph;

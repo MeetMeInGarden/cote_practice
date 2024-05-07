@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Queue;
 import java.util.LinkedList;
 
-// 문제027. 미로 탐색하기(2178)
+// 문제027. 미로 탐색하기(2178) - 시도2
 public class Main2 {
 	// 그래프
 	static Node[][] graph;
