@@ -19,6 +19,8 @@ public class Main4 {
 	static int [][]A;
 	// 첫째 줄에 두 정수 입력값
 	static int N, M;
+	// 탐색 깊이
+	static int depth= 1;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -39,7 +41,15 @@ public class Main4 {
 		}
 		
 		bfs(0, 0);
+		/**
+		 * 깊이 업데이트를 하다보면 결국에는 (N, M)의 위치로 도달할 것
+		 * 그때 해당 깊이 값을 출력하기 위해 아래와 같은 코드 작성
+		 * A[N][M]는 indexoutofboundsexception 발생
+		 */
 		System.out.println(A[N - 1][M - 1]);
+		System.out.printf("depth : %d", depth);
+		// 4 6
+		// A[4 - 1][6 - 1] => A[3][5]
 	}
 	
 	static void bfs(int i, int j) {
@@ -54,11 +64,20 @@ public class Main4 {
 			for(int k = 0; k < 4; k++) {
 				int x = now[0] + dx[k];
 				int y = now[1] + dy[k];
+				 System.out.printf("x: %d, y: %d \n", x, y);
 				if(x >= 0 && y >= 0 && x < N && y < M) {	// 좌표 유효성 검사
 					if(A[x][y] > 0 && !visited[x][y]) {		// 이동할 수 있는 칸 && 방문하지 않았다면
 						visited[x][y] = true;				// 해당 노드 방문 여부 true 로 변경
 						A[x][y] = A[now[0]][now[1]] + 1;	// 깊이 업데이트
+						
+						/**
+						 * 해당 if 문 구절에 들어왔다는 것은
+						 * - 이동할 수 있는 칸(=1) 이라는 의미
+						 * - 어차피 0 이상이면 이동할 수 있는 칸을 의미하는 것이므로
+						 * - 깊이 값을 이런 방식으로 업데이트 하는 듯
+						 */
 						queue.offer(new int[]{x, y});
+						depth += 1;
 					}
 				}
 			}
