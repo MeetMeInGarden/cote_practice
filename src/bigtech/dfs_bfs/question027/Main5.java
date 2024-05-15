@@ -104,8 +104,9 @@ public class Main5 {
 				
 				if(xx >= 0 && yy >= 0 && xx < N && yy < M) {			// 좌표 유효성 검사
 					if(!visited[xx][yy] && maze[xx][yy] > 0) {			// 이동할 수 있는 칸 && 방문하지 않았다면
-						visited[xx][yy] = true;							// 해당 칸으로 이동 && 방문 처리
-						queue.offer(new Node(xx, yy, node.getD() + 1));	// 바로 위에서 방문 처리한 칸 다시 Queue 넣기 by 그 칸을 기준으로 또 (상, 우, 하, 좌)를 탐색해야 하니까
+						visited[xx][yy] = true;							// 해당 칸으로 이동 && 방문 여부 true 처리
+						queue.offer(new Node(xx, yy, node.getD() + 1));	// 바로 위에서 방문 여부 true 처리 한 칸 다시 Queue 넣기 by 그 칸을 기준으로 또 (상, 우, 하, 좌) 탐색해야 하니까
+																		// node.getD() + 1 ==> depth 값 업데이트
 					}
 				}
 			}
